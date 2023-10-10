@@ -32,14 +32,15 @@ export class LoginPage implements OnInit {
   }
 
   login = async () => {
-    const toast = await this.toastCtrl.create({
-      message: 'error message',
-      duration: 3000,
-      position: 'top',
-      color: 'danger',
-      cssClass: 'ion-text-center'
-    })
-    toast.present()
+    // const toast = await this.toastCtrl.create({
+    //   message: 'error message',
+    //   duration: 3000,
+    //   position: 'top',
+    //   color: 'danger',
+    //   cssClass: 'ion-text-center'
+    // })
+    // toast.present()
+    this.navCtrl.navigateRoot(['/home']);
   }
 
   goToSignup = async() => {

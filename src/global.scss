@@ -28,3 +28,8 @@
 ion-content::part(background) {
   background: #1A1A1A;
 }
+
+ion-toolbar {
+  --background: #1A1A1A;
+  --color: #FFFFFF;
+}

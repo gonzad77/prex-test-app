@@ -1,0 +1,25 @@
+ion-toolbar {
+  ion-icon {
+    color: #FFFFFF;
+    font-size: 22px;
+  }
+}
+
+ion-list {
+  background-color: transparent;
+  ion-item {
+    --background: #e8e8d8;
+    --border-radius: 8px;
+    .image-item {
+      width:40% ;
+      height: auto;
+    }
+  }
+}
+
+.slider-option {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: 20px;
+  margin-left: -20px;
+}
