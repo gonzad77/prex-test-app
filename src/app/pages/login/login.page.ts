@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NavController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,9 @@ export class LoginPage implements OnInit {
   }
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastCtrl: ToastController,
+    private navCtrl: NavController
   ) { 
     this.loginForm = this.formBuilder.group({
       username: new FormControl('', Validators.required),
@@ -26,6 +29,21 @@ export class LoginPage implements OnInit {
     // this.loginForm = this.formBuilder.group({
     //   username: new FormControl('', Validators.required)
     // })
+  }
+
+  login = async () => {
+    const toast = await this.toastCtrl.create({
+      message: 'error message',
+      duration: 3000,
+      position: 'top',
+      color: 'danger',
+      cssClass: 'ion-text-center'
+    })
+    toast.present()
+  }
+
+  goToSignup = async() => {
+    this.navCtrl.navigateRoot(['/signup']);
   }
 
 }

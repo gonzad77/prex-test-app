@@ -6,7 +6,7 @@ ion-content {
     transform: translate(-50%, -50%);
     width: 100%;
 
-    div.login-input {
+    div.signup-input {
       float: left;
       width: 100%;
       position: relative;
@@ -36,20 +36,10 @@ ion-content {
       }
     }
 
-    img.logo {
-      width: 50%;
-      max-width: 150px;
-      margin-left: 50%;
-      transform: translateX(-50%);
-      border: 2px solid #FFFFFF;
-      border-radius: 50%;
-    }
-
-    .edit-button {
-      position: absolute;
-      left: 60%;
-      top: 0;
-      transform: translateY(-50%);
+    .title {
+      color: #FFFFFF;
+      text-transform: uppercase;
+      font-size: 22px;
     }
 
     ion-col {

@@ -1,0 +1,41 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="10" offset="1" class="ion-text-center title">
+        Create new account
+      </ion-col>
+
+      <ion-col size="10" offset="1" class="ion-margin-top ion-padding-vertical">
+        <form [formGroup]="signupForm">
+          <div class="signup-input">
+            <ion-input placeholder="Username" formControlName="username" class="ion-margin-bottom"></ion-input>
+          </div>
+
+          <div class="signup-input ion-margin-bottom">
+            <ion-input placeholder="Password" formControlName="password" [type]="show.password ? 'text' : 'password'"></ion-input>
+
+            <ion-button (click)="show.password = !show.password" fill="clear">
+              <ion-icon [name]="show.password ? 'eye' : 'eye-off'"></ion-icon>
+            </ion-button>
+          </div>
+
+          <div class="signup-input">
+            <ion-input placeholder="Confirm password" formControlName="confirmPassword" [type]="show.confirmPassword ? 'text' : 'password'"></ion-input>
+
+            <ion-button (click)="show.confirmPassword = !show.confirmPassword" fill="clear">
+              <ion-icon [name]="show.confirmPassword ? 'eye' : 'eye-off'"></ion-icon>
+            </ion-button>
+          </div>
+        </form>
+      </ion-col>
+
+      <ion-col size="10" offset="1">
+        <ion-button fill="solid" expand="block" shape="round" [disabled]="!signupForm.valid" (click)="signup(signupForm.value)" class="ion-padding-vertical custom-buttom">Signup</ion-button>
+      </ion-col>
+
+      <ion-col size="10" offset="1" class="ion-text-center">
+        <ion-button fill="clear" (click)="goToLogin()" class="ion-padding-vertical custom-buttom">Return to login</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
