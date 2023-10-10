@@ -1,0 +1,25 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <img src="assets/icon/favicon.png" alt="logo" class="logo">
+      </ion-col>
+
+      <ion-col size="10" offset="1" class="ion-margin-top ion-padding-top">
+        <form [formGroup]="loginForm">
+          <div class="login-input">
+            <ion-input placeholder="Username" formControlName="username" class="ion-margin-bottom"></ion-input>
+          </div>
+
+          <div class="login-input">
+            <ion-input placeholder="Password" formControlName="password" [type]="show.password ? 'text' : 'password'"></ion-input>
+
+            <ion-button (click)="show.password = !show.password" fill="clear">
+              <ion-icon [name]="show.password ? 'eye' : 'eye-off'"></ion-icon>
+            </ion-button>
+          </div>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
