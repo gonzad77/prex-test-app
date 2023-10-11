@@ -1,0 +1,48 @@
+<ion-header class="ion-no-borders">
+  <ion-toolbar class="ion-no-padding ion-padding-horizontal ion-text-center">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit film</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="10" offset="1" class="ion-margin-top ion-padding-vertical">
+        <form [formGroup]="editForm">
+          <ion-list>
+            <ion-item class="ion-margin-bottom">
+              <ion-input label="Title" placeholder="Title" formControlName="title"></ion-input>
+            </ion-item>
+
+            <ion-item class="ion-margin-bottom">
+              <ion-select label="Rate" placeholder="Rate" formControlName="stars" value="{{film.stars}}">
+                <ion-select-option *ngFor="let rate of [0,1,2,3,4,5]" [value]="rate">{{rate}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item class="ion-margin-bottom">
+              <ion-label>Date</ion-label>
+              <ion-datetime-button datetime="datetime"></ion-datetime-button>
+              <ion-modal #datetime [keepContentsMounted]="true">
+                <ng-template>
+                  <ion-datetime (ionChange)="dateChange($event)" id="datetime" displayFormat="DD/MM/YYYY" presentation="date" [preferWheel]="true" [showDefaultButtons]="true"></ion-datetime>                
+                </ng-template>
+              </ion-modal>
+            </ion-item>
+
+            <ion-item class="ion-margin-bottom">
+              <ion-textarea label="Description" placeholder="Description" formControlName="description"></ion-textarea>
+            </ion-item>
+            
+          </ion-list>
+        </form>
+      </ion-col>
+      <ion-col size="10" offset="1" class="ion-text-center">
+        <ion-button expand="block" color="primary" (click)="doEdit()" [disabled]="!editForm.valid" class="ion-padding-vertical custom-buttom">Edit</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

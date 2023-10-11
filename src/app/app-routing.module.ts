@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'edit',
     loadChildren: () => import('./pages/edit/edit.module').then( m => m.EditPageModule)
   },
+  {
+    path: 'edit-form',
+    loadChildren: () => import('./pages/edit-form/edit-form.module').then( m => m.EditFormPageModule)
+  },
 ];
 
 @NgModule({

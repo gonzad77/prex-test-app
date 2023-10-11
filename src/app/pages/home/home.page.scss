@@ -8,11 +8,16 @@ ion-toolbar {
 ion-list {
   background-color: transparent;
   ion-item {
-    --background: #e8e8d8;
+    --background: #6e6e6e;
     --border-radius: 8px;
     .image-item {
       width:40% ;
       height: auto;
+    }
+    ion-label {
+      p, h2 {
+        color: #000000 !important;
+      }
     }
   }
 }

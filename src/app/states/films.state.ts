@@ -14,7 +14,7 @@ export class FilmsState {
   constructor() {}
 
   public set = (value: Array<Film>) => {
-    Object.assign(this.state, value);
+    this.state = value;
     this.subject.next(this.state);
   }
 
