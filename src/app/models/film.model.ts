@@ -1,5 +1,5 @@
 export interface Film {
-  id: string,
+  _id: string,
   title: string,
   description: string,
   stars: number,
@@ -8,7 +8,7 @@ export interface Film {
 }
 
 const DefaultFilm = () => ({
-  id: '',
+  _id: '',
   title: '',
   description: '',
   stars: 0,
