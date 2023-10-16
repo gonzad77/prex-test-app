@@ -14,7 +14,7 @@ export class HomePage implements OnInit {
 
   filmsOriginal = [
     {
-      id: '0',
+      _id: '0',
       title: 'Abc',
       description: 'Descripcion largaasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
       src: 'https://ionicframework.com/docs/img/demos/card-media.png',
@@ -22,7 +22,7 @@ export class HomePage implements OnInit {
       date: new Date()
     },
     {
-      id: '1',
+      _id: '1',
       title: 'Dewe',
       description: 'Descripcion larga',
       src: 'https://ionicframework.com/docs/img/demos/card-media.png',
@@ -30,7 +30,7 @@ export class HomePage implements OnInit {
       date: new Date()
     },
     {
-      id: '2',
+      _id: '2',
       title: 'Adsdwe',
       description: 'Descripcion larga',
       src: 'https://ionicframework.com/docs/img/demos/card-media.png',
@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
       date: new Date()
     },
     {
-      id: '3',
+      _id: '3',
       title: 'SSSDDD',
       description: 'Descripcion larga',
       src: 'https://ionicframework.com/docs/img/demos/card-media.png',
@@ -46,7 +46,7 @@ export class HomePage implements OnInit {
       date: new Date()
     },
     {
-      id: '4',
+      _id: '4',
       title: 'dadwdwd',
       description: 'Descripcion larga',
       src: 'https://ionicframework.com/docs/img/demos/card-media.png',

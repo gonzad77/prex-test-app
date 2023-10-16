@@ -41,7 +41,7 @@ export class EditPage implements OnInit {
 
   doDelete = () => {
     const actualFilms = this.filmsState.get();
-    const newFilms = actualFilms.filter( f => f.id !== this.film.id);
+    const newFilms = actualFilms.filter( f => f._id !== this.film._id);
     this.filmsState.set(newFilms);
     this.navCtrl.pop();
   }

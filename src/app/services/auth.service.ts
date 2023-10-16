@@ -14,13 +14,16 @@ export class AuthService {
   ) {}
 
   register = ({username, password}: Signup) => {
-    return this.rest.post('/register', {
+    debugger
+    return this.rest.post('/auth/register', {
       username,
       password
-    })
+    }, [200])
   }
+
   login = ({username, password}: Login) => {
-    return this.rest.post('/login', {
+    debugger
+    return this.rest.post('/auth/login', {
       username,
       password
     }, [200])

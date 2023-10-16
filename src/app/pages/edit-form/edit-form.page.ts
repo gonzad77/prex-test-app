@@ -39,7 +39,7 @@ export class EditFormPage implements OnInit {
 
   doEdit = () => {
     const newFilm: Film = this.editForm.value;
-    newFilm.id = this.film.id;
+    newFilm._id = this.film._id;
     newFilm.src = this.film.src;
     console.log(newFilm)
   }

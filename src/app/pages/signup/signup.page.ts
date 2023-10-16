@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavController, ToastController } from '@ionic/angular';
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { Signup } from 'src/app/models/signup.model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -9,6 +10,8 @@ import { Signup } from 'src/app/models/signup.model';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
+
+  private loader: HTMLIonLoadingElement | undefined;
 
   public signupForm: FormGroup;
   public show = {
@@ -19,7 +22,9 @@ export class SignupPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private toastCtrl: ToastController,
-    private navCtrl: NavController
+    private loadingCtrl: LoadingController,
+    private navCtrl: NavController,
+    private authService: AuthService
   ) { 
     this.signupForm = this.formBuilder.group({
       username: new FormControl('', Validators.required),
@@ -31,30 +36,41 @@ export class SignupPage implements OnInit {
   ngOnInit() {
   }
 
-  signup = (form: any) => {
+  signup = async (form: any) => {
+
+    this.loader = await this.loadingCtrl.create({
+      message: 'Loading...'
+    })
     
     const signup: Signup = { ...form };
 
-    signup.confirmPassword !== signup.password ? this.createToast('Passwords do not match') : this.doSignup(signup)
+    signup.confirmPassword !== signup.password ? this.createToast('Passwords do not match', 'danger') : this.doSignup(signup)
     
   }
 
-  private createToast = async (message: string) => {
+  private createToast = async (message: string, color: string) => {
     const toast = await this.toastCtrl.create({
       message,
       duration: 3000,
       position: 'top',
-      color: 'danger',
+      color,
       cssClass: 'ion-text-center'
     })
     toast.present()
   }
 
-  private doSignup(signup: Signup) {
-    console.log(signup);
+  private doSignup = async (signup: Signup) => {
+    try {
+      const response = await this.authService.register(signup)
+      this.loader?.dismiss();
+      this.createToast('User created', 'success');
+    } catch(e: any) {
+      this.createToast(e.error.message, 'danger');
+      this.loader?.dismiss();
+    }
   }
 
-  goToLogin = async() => {
+  goToLogin = () => {
     this.navCtrl.navigateRoot(['/login']);
   }
 

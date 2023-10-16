@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavController, ToastController } from '@ionic/angular';
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
+import { Login } from 'src/app/models/login.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +10,8 @@ import { NavController, ToastController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
+  private loader: HTMLIonLoadingElement | undefined;
 
   public loginForm: FormGroup;
   public show = {
@@ -17,7 +21,9 @@ export class LoginPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private toastCtrl: ToastController,
-    private navCtrl: NavController
+    private loadingCtrl: LoadingController,
+    private navCtrl: NavController,
+    private authService: AuthService
   ) { 
     this.loginForm = this.formBuilder.group({
       username: new FormControl('', Validators.required),
@@ -26,21 +32,31 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.loginForm = this.formBuilder.group({
-    //   username: new FormControl('', Validators.required)
-    // })
   }
 
-  login = async () => {
-    // const toast = await this.toastCtrl.create({
-    //   message: 'error message',
-    //   duration: 3000,
-    //   position: 'top',
-    //   color: 'danger',
-    //   cssClass: 'ion-text-center'
-    // })
-    // toast.present()
-    this.navCtrl.navigateRoot(['/home']);
+  login = async (form: any) => {
+    this.loader = await this.loadingCtrl.create({
+      message: 'Loading...'
+    })
+    try {
+      const login: Login = { ...form }
+      const response = await this.authService.login(login) as Response;
+      // const data = response.body as any;
+      this.navCtrl.navigateRoot(['/home']);
+      this.loader.dismiss();
+
+    } catch (e: any) {
+      
+      const toast = await this.toastCtrl.create({
+        message: e.error.message,
+        duration: 3000,
+        position: 'top',
+        color: 'danger',
+        cssClass: 'ion-text-center'
+      })
+      toast.present();
+      this.loader.dismiss();
+    }
   }
 
   goToSignup = async() => {
