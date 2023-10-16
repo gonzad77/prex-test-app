@@ -3,6 +3,7 @@ import { Film } from 'src/app/models/film.model';
 import { NavController } from '@ionic/angular';
 import { FilmsState } from 'src/app/states/films.state';
 import { FilmService } from 'src/app/services/film.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,8 @@ export class HomePage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private filmsState: FilmsState,
-    private filmService: FilmService
+    private filmService: FilmService,
+    private storage: StorageService
   ) { 
     this.startListeners();
   }
@@ -49,6 +51,11 @@ export class HomePage implements OnInit {
 
   edit = (film: Film) => {
     this.navCtrl.navigateForward(['edit', film]);
+  }
+
+  logout = async () => {
+    await this.storage.remove('user');
+    this.navCtrl.navigateRoot('/login')
   }
 
 }

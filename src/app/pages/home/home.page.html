@@ -7,7 +7,7 @@
     <ion-title class="ion-text-center">Movies</ion-title>
     
     <ion-buttons slot="end">
-      <ion-icon name="log-out"></ion-icon>
+      <ion-icon name="log-out" (click)="logout()"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar *ngIf="showSearchBar">
@@ -16,7 +16,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
+  <p *ngIf="films.length === 0" class="ion-text-center">No films, charge the json film files to database</p>
+  <ion-list *ngIf="films.length !== 0">
     <ion-item-sliding class="ion-margin-bottom" *ngFor="let film of films">
       <ion-item class="ion-margin-horizontal">
         <img [src]="film.src ? film.src : 'https://ionicframework.com/docs/img/demos/card-media.png'" alt="logo" class="image-item"/>

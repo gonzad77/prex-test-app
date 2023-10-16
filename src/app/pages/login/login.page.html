@@ -2,8 +2,8 @@
   <ion-grid>
     <ion-row>
       <ion-col size="12">
-        <img src="assets/icon/favicon.png" alt="logo" class="logo">
-        <ion-button fill="clear" class="edit-button">
+        <img [src]="logo ? logo : 'assets/icon/favicon.png'" alt="logo" class="logo">
+        <ion-button fill="clear" (click)="takePhoto()" class="edit-button">
           <ion-icon slot="icon-only" name="create"></ion-icon>
         </ion-button>
       </ion-col>
