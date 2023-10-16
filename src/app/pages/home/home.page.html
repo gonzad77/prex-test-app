@@ -19,11 +19,11 @@
   <ion-list>
     <ion-item-sliding class="ion-margin-bottom" *ngFor="let film of films">
       <ion-item class="ion-margin-horizontal">
-        <img [src]="film.src" alt="logo" class="image-item"/>
+        <img [src]="film.src ? film.src : 'https://ionicframework.com/docs/img/demos/card-media.png'" alt="logo" class="image-item"/>
 
         <ion-label class="ion-padding-start ion-text-center">
           <h1 class="ion-text-wrap">{{film.title}}</h1>
-          <p class="ion-text-wrap">{{film.description}}</p>
+          <p class="ion-text-wrap description-text">{{film.description}}</p>
 
           <div>
             <ion-icon slot="icon-only" [color]="0 < film.stars ? 'warning' : 'medium'" name="star"></ion-icon>

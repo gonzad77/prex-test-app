@@ -65,7 +65,7 @@ export class SignupPage implements OnInit {
       this.loader?.dismiss();
       this.createToast('User created', 'success');
     } catch(e: any) {
-      this.createToast(e.error.message, 'danger');
+      this.createToast(e.error.message ? e.error.message : 'Unexpected error, try again later.', 'danger');
       this.loader?.dismiss();
     }
   }

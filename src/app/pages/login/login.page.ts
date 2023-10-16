@@ -38,15 +38,13 @@ export class LoginPage implements OnInit {
     this.loader = await this.loadingCtrl.create({
       message: 'Loading...'
     })
+    await this.loader.present();
     try {
       const login: Login = { ...form }
-      const response = await this.authService.login(login) as Response;
-      // const data = response.body as any;
+      await this.authService.login(login) as Response;
       this.navCtrl.navigateRoot(['/home']);
       this.loader.dismiss();
-
     } catch (e: any) {
-      
       const toast = await this.toastCtrl.create({
         message: e.error.message,
         duration: 3000,

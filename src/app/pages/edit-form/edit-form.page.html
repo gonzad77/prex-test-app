@@ -14,7 +14,7 @@
         <form [formGroup]="editForm">
           <ion-list>
             <ion-item class="ion-margin-bottom">
-              <ion-input label="Title" placeholder="Title" formControlName="title"></ion-input>
+              <ion-input class="ion-text-end" label="Title" placeholder="Title" formControlName="title"></ion-input>
             </ion-item>
 
             <ion-item class="ion-margin-bottom">
@@ -28,7 +28,7 @@
               <ion-datetime-button datetime="datetime"></ion-datetime-button>
               <ion-modal #datetime [keepContentsMounted]="true">
                 <ng-template>
-                  <ion-datetime (ionChange)="dateChange($event)" id="datetime" displayFormat="DD/MM/YYYY" presentation="date" [preferWheel]="true" [showDefaultButtons]="true"></ion-datetime>                
+                  <ion-datetime formControlName="date" id="datetime" displayFormat="DD/MM/YYYY" presentation="date" [preferWheel]="true" [showDefaultButtons]="true"></ion-datetime>                
                 </ng-template>
               </ion-modal>
             </ion-item>
@@ -41,7 +41,7 @@
         </form>
       </ion-col>
       <ion-col size="10" offset="1" class="ion-text-center">
-        <ion-button expand="block" color="primary" (click)="doEdit()" [disabled]="!editForm.valid" class="ion-padding-vertical custom-buttom">Edit</ion-button>
+        <ion-button expand="block" color="primary" (click)="doEdit(this.editForm.value)" [disabled]="!editForm.valid" class="ion-padding-vertical custom-buttom">Edit</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

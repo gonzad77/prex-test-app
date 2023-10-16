@@ -13,11 +13,11 @@ export class FilmService {
   ) {}
 
   getAll = () => {
-    return this.rest.get('/', {}, [200])
+    return this.rest.get('/films/', {}, [200])
   }
   
   edit = ({_id, title, description, stars, src, date}: Film) => {
-    return this.rest.put('/edit', {
+    return this.rest.put('/films/edit', {
       _id,
       title,
       description,
@@ -28,6 +28,6 @@ export class FilmService {
   }
 
   delete = ({_id}: Film) => {
-    return this.rest.delete(`/delete?_id=${_id}`, {}, [200])
+    return this.rest.post('/films/delete', {_id}, [200])
   }
 }

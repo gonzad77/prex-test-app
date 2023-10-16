@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Film } from 'src/app/models/film.model';
 import { NavController } from '@ionic/angular';
 import { FilmsState } from 'src/app/states/films.state';
+import { FilmService } from 'src/app/services/film.service';
 
 @Component({
   selector: 'app-home',
@@ -12,59 +13,22 @@ export class HomePage implements OnInit {
 
   showSearchBar: boolean = false;
 
-  filmsOriginal = [
-    {
-      _id: '0',
-      title: 'Abc',
-      description: 'Descripcion largaasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-      src: 'https://ionicframework.com/docs/img/demos/card-media.png',
-      stars: 0,
-      date: new Date()
-    },
-    {
-      _id: '1',
-      title: 'Dewe',
-      description: 'Descripcion larga',
-      src: 'https://ionicframework.com/docs/img/demos/card-media.png',
-      stars: 1,
-      date: new Date()
-    },
-    {
-      _id: '2',
-      title: 'Adsdwe',
-      description: 'Descripcion larga',
-      src: 'https://ionicframework.com/docs/img/demos/card-media.png',
-      stars: 2,
-      date: new Date()
-    },
-    {
-      _id: '3',
-      title: 'SSSDDD',
-      description: 'Descripcion larga',
-      src: 'https://ionicframework.com/docs/img/demos/card-media.png',
-      stars: 3,
-      date: new Date()
-    },
-    {
-      _id: '4',
-      title: 'dadwdwd',
-      description: 'Descripcion larga',
-      src: 'https://ionicframework.com/docs/img/demos/card-media.png',
-      stars: 5,
-      date: new Date()
-    }
-  ]
+  filmsOriginal: Array<Film> = []
 
   films: Array<Film> = []
 
   constructor(
     private navCtrl: NavController,
-    private filmsState: FilmsState
+    private filmsState: FilmsState,
+    private filmService: FilmService
   ) { 
     this.startListeners();
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const response = await this.filmService.getAll() as Response;
+    const data = response.body as any;
+    this.filmsOriginal = data;
     this.filmsState.set(this.filmsOriginal)
     Object.assign(this.films, this.filmsOriginal);
   }

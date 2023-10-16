@@ -90,29 +90,4 @@ export class RestService {
       })
     })
   }
-
-  public async delete(path: string, body: any, statusOK = [200]) {
-    console.log('Delete started')
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-
-    return new Promise( (resolve, reject) => {
-      this.httpClient.delete(
-        `${this.apiUrl}${path}`,
-        { headers, observe: 'response' }
-      ).subscribe( data => {
-        if( !statusOK.includes(data.status)) {
-          console.log('Delete finish faild');
-          reject(data)
-        }
-
-        console.log('Delete finish OK');
-        resolve(data);
-      }, (error) => {
-        console.log('Delete finish faild 2');
-        reject(error);
-      })
-    })
-  }
 }

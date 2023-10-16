@@ -10,6 +10,13 @@ ion-list {
   ion-item {
     --background: #6e6e6e;
     --border-radius: 8px;
+    height: 250px;
+    min-height: 250px;
+   
+    .description-text {
+      max-height: 160px;
+      height: 160px;
+    }
     .image-item {
       width:40% ;
       height: auto;
@@ -20,6 +27,9 @@ ion-list {
       }
     }
   }
+  ion-item::part(native) {
+    height: 100%;
+  }
 }
 
 .slider-option {
@@ -27,4 +37,5 @@ ion-list {
   padding-right: 20px;
   margin-right: 20px;
   margin-left: -20px;
+  height: 250px;
 }

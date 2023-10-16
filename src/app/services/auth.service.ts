@@ -14,7 +14,6 @@ export class AuthService {
   ) {}
 
   register = ({username, password}: Signup) => {
-    debugger
     return this.rest.post('/auth/register', {
       username,
       password
@@ -22,7 +21,6 @@ export class AuthService {
   }
 
   login = ({username, password}: Login) => {
-    debugger
     return this.rest.post('/auth/login', {
       username,
       password
