@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 })
 export class RestService {
 
-  private apiUrl = 'http://localhost:8000/api';
+  private apiUrl = 'http://192.168.1.2:8000/api';
   
   constructor(
     private httpClient: HttpClient,
